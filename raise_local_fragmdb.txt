@@ -39,5 +39,3 @@ create table multipletsFragm (id int unique primary key, model int, numVert int,
 LOAD DATA LOCAL INFILE '/Alice/Documents/bi/FragmDBproject/multiplets_fragmdb.txt' INTO TABLE multipletsFragm;
 
 SHOW WARNINGS;
-
-
