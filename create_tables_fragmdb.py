@@ -1,5 +1,4 @@
 #This code creates tables for database
-
 #Python 2.7
 
 import os
