@@ -1,4 +1,4 @@
-#Code creates tables for database
+#This code creates tables for database
 
 #Python 2.7
 
