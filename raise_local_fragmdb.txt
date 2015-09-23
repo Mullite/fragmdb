@@ -1,0 +1,43 @@
+drop database IF EXISTS rss1;
+
+create database rss1;
+
+use rss1;
+
+create BasePairsFragm (id int unique primary key, model int, multiplet int, num int, nucl1 varchar(15), bond char(3), nucl2 varchar(15), type char(2), class1 varchar(10), class2 varchar(10), class3 varchar(10), fullstem int, revstem int, link int, edge int, frag1 int, frag2 int, info1 text, info2 text, dist1 float(8,3), dist2 float(8,3), dist3 float(8,3), tor float(8,3), hbonds text, hbnum int, shear float(8,3), stretch float(8,3), stagger float(8,3), buckle float(8,3), propeller float(8,3), opening float(8,3));
+
+LOAD DATA LOCAL INFILE '/Alice/Documents/bi/FragmDBproject/BasePairs_fragmdb.txt' INTO TABLE BasePairsFragm;
+
+SHOW WARNINGS;
+
+create modelsFragm (id int unique primary key, number int, file char(4), main int, rnachains int, maxrnalen int, rnalen int, dnachains int, maxdnalen int, dnalen int, protchains int, maxprotlen int, protlen int, ligchains int, maxliglen int, liglen int, atoms int, nucls int, aminos int, ligands int,  nrpdb int, numMults int, numFragm int);
+
+LOAD DATA LOCAL INFILE '/Alice/Documents/bi/FragmDBproject/models_fragmdb.txt' INTO TABLE modelsFragm;
+
+SHOW WARNINGS;
+
+create table wingsFragm (id int unique primary key, model int, chain char(1), multiplet int, frag int, type char(1), FS int, RS int, len int, another int, seq text,  start1 varchar(15), end1 varchar(15),  start2 int, end2 int, details text,index(model));
+
+LOAD DATA LOCAL INFILE '/Alice/Documents/bi/FragmDBproject/wings_fragmdb.txt' INTO TABLE wingsFragm;
+
+SHOW WARNINGS;
+
+create table fragmentsFragm (id int unique primary key, model int, chain char(1), multiplet int, start1 varchar(15), end1 varchar(15),  start2 int, end2 int, len int, bpsnum int, con int, seq text, wings int, details text,breaks text);
+
+LOAD DATA LOCAL INFILE '/Alice/Documents/bi/FragmDBproject/fragments_fragmdb.txt' INTO TABLE fragmentsFragm;
+
+SHOW WARNINGS;
+
+create table edgesFragm (id int unique primary key, model int, multiplet int, frag1 int, frag2 int, numReg int, numIrreg int);
+
+LOAD DATA LOCAL INFILE '/Alice/Documents/bi/FragmDBproject/edges_fragmdb.txt' INTO TABLE edgesFragm;
+
+SHOW WARNINGS;
+
+create table multipletsFragm (id int unique primary key, model int, numVert int, numEdges int, numPairs int, FullStems text, RevStems text, links text, invariant text);
+
+LOAD DATA LOCAL INFILE '/Alice/Documents/bi/FragmDBproject/multiplets_fragmdb.txt' INTO TABLE multipletsFragm;
+
+SHOW WARNINGS;
+
+
